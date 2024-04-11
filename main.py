@@ -36,10 +36,9 @@ def printHW():
 
 
 global_arrayNum =[]
-for i in range(1,201,50):
-    with ThreadPoolExecutor( max_workers=2) as executor:
-        executor.submit(contador2,i,i + 49 if i +49 <=200 else 200)
-        executor.submit(printHW)
+with ThreadPoolExecutor( max_workers=2) as executor:
+    for i in range(1,201,50):
+        executor.submit(contador2,i,i + 49 if i + 49 <=200 else 200)
 tf = time.time()-t0
 global_arrayNum.sort()
 print(f'Tiempo de ejecución: {tf}')
